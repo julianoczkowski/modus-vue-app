@@ -1,0 +1,37 @@
+# Global code owners
+* @julianoczkowski
+
+# Documentation
+*.md @julianoczkowski
+docs/ @julianoczkowski
+
+# Configuration files
+package.json @julianoczkowski
+tsconfig.json @julianoczkowski
+vite.config.ts @julianoczkowski
+.gitignore @julianoczkowski
+
+# Cursor rules and MCP configuration
+.cursor/ @julianoczkowski
+.cursor/rules/ @julianoczkowski
+.cursor/mcp.json @julianoczkowski
+
+# Security and contribution guidelines
+SECURITY.md @julianoczkowski
+CONTRIBUTING.md @julianoczkowski
+
+# GitHub templates and workflows
+.github/ @julianoczkowski
+
+# Core source code
+src/ @julianoczkowski
+
+# Component definitions and types
+src/types/ @julianoczkowski
+src/components/ @julianoczkowski
+
+# Build and deployment scripts
+scripts/ @julianoczkowski
+
+# Color linting script
+scripts/check-modus-colors.js @julianoczkowski

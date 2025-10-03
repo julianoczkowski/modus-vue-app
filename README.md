@@ -54,7 +54,19 @@ This boilerplate provides a complete foundation for building Vue.js applications
 - ✅ **Development Tools** - ESLint, Prettier, and hot module replacement configured
 - ✅ **Production Ready** - Optimized build configuration and deployment setup
 
-## Getting Started
+## 🎨 Figma to Code Integration
+
+![Modus Figma MCP](modus_figma_mcp.png)
+
+If you're working with Figma designs and want AI-assisted coding that understands your design tokens and components, check out the official Modus Figma MCP integration. This powerful tool bridges the gap between design and development by providing direct access to your Figma designs through AI assistants.
+
+**Learn more:** [Modus Figma MCP Integration Guide](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/documentation-modus-figma-mcp-integration-guide--docs)
+
+> **Perfect for:** Design-to-code workflows, maintaining design system consistency, and accelerating development with AI-powered Figma integration.
+
+##
+
+![Modus Figma MCP](getting_started_header.png)
 
 ### Prerequisites
 
