@@ -516,7 +516,7 @@ const clearLogs = () => {
 }
 
 .demo-header h1 {
-  color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-info);
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -532,13 +532,13 @@ const clearLogs = () => {
 .demo-section {
   margin-bottom: 3rem;
   padding: 2rem;
-  background-color: var(--modus-wc-color-bg-2);
+  background-color: var(--modus-wc-color-base-page);
   border-radius: 8px;
   border: 1px solid var(--modus-wc-color-border);
 }
 
 .demo-section h2 {
-  color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-info);
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }

@@ -32,7 +32,7 @@
     </main>
 
     <footer class="app-footer">
-      <p>&copy; 2024 Modus Vue Components Demo</p>
+      <p>&copy; 2025 Modus Vue Components Demo</p>
     </footer>
   </div>
 </template>
