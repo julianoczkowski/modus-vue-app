@@ -1,7 +1,7 @@
 {
   "name": "modus-vue-app",
   "version": "1.0.0",
-  "description": "Vue 3 application with Modus Web Components integration",
+  "description": "Vue 3 application with Modus 2 Web Components integration",
   "type": "module",
   "scripts": {
     "dev": "vite",
