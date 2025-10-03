@@ -99,7 +99,7 @@ If you're working with Figma designs and want AI-assisted coding that understand
    ```
 
 4. **Open your browser:**
-   Navigate to [http://localhost:5173](http://localhost:5173)
+   Navigate to your localhost usually it is [http://localhost:3000](http://localhost:3000)
 
 ### Build for Production
 
@@ -118,8 +118,8 @@ modus-vue-app/
 │   ├── components/          # Reusable Vue components
 │   │   └── ModusIcon.vue   # Icon wrapper component
 │   ├── views/              # Page components
-│   │   ├── Home.vue        # Landing page with examples
-│   │   └── ButtonDemo.vue  # Comprehensive component demos
+│   │   ├── Home.vue        # Landing page with examples (can be removed)
+│   │   └── ButtonDemo.vue  # Comprehensive component demos  (can be removed)
 │   ├── router/             # Vue Router configuration
 │   ├── types/              # TypeScript definitions
 │   │   └── modus.d.ts      # Modus component types
@@ -127,7 +127,7 @@ modus-vue-app/
 │   │   └── icons.ts        # Icon validation and helpers
 │   └── main.ts             # Application entry point
 ├── public/                 # Public assets
-├── implementation_guides/  # Documentation and guides
+├── implementation_guides/  # Where your documentation will be stored
 └── .gitignore             # Git ignore configuration
 ```
 
