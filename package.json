@@ -19,6 +19,10 @@
   ],
   "author": "",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
   "dependencies": {
     "@trimble-oss/modus-icons": "^1.17.1",
     "@trimble-oss/moduswebcomponents": "^1.0.0",

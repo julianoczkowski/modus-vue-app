@@ -70,7 +70,7 @@ If you're working with Figma designs and want AI-assisted coding that understand
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 20+ (required for Vite 7.x compatibility)
 - npm or yarn
 
 ### Installation
