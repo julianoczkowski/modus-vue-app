@@ -1,0 +1,32 @@
+{
+  "name": "modus-vue-app",
+  "version": "1.0.0",
+  "description": "Vue 3 application with Modus Web Components integration",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "keywords": [
+    "vue",
+    "modus",
+    "web-components",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@trimble-oss/modus-icons": "^1.17.1",
+    "@trimble-oss/moduswebcomponents": "^1.0.0",
+    "@trimble-oss/moduswebcomponents-vue": "^1.0.0-vue",
+    "@types/node": "^24.6.2",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.1",
+    "vue-tsc": "^3.1.0"
+  }
+}
