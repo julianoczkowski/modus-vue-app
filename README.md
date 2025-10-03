@@ -1,6 +1,25 @@
+![Modus Vue Boilerplate Hero](hero.png)
+
 # Modus Vue Boilerplate
 
 A production-ready Vue 3 boilerplate/starter template with Modus 2 Web Components integration, featuring TypeScript support, comprehensive component examples, and modern development practices. Perfect for quickly bootstrapping new applications with the Modus Design System.
+
+## 📋 Built-in Development Rules
+
+This boilerplate comes with comprehensive development rules and standards to ensure code quality and consistency:
+
+### 🎯 Always Applied Rules
+
+- **🎨 Color Usage** - Enforces the 9 approved Modus colors and prevents hardcoded values
+- **🧩 Modus Web Components** - Guidelines for proper component implementation with MCP documentation
+- **⚡ Vue Component Creation** - Best practices for Vue 3 component architecture and CSS patterns
+
+### 🔧 Context-Specific Rules
+
+- **🎭 Modus Icons** - Complete icon system with 500+ validated icon names
+- **🌐 Chrome DevTools Testing** - Browser debugging integration via MCP for implementation testing
+
+> **Location:** All rules are stored in `.cursor/rules/` and automatically guide your development workflow through AI assistants.
 
 ## 🤖 AI Development Enhanced
 
@@ -260,7 +279,15 @@ declare global {
         color?: "primary" | "secondary" | "tertiary" | "warning" | "danger";
         variant?: "filled" | "outlined" | "borderless";
         size?: "xs" | "sm" | "md" | "lg";
+        shape?: "rectangle" | "square" | "circle";
+        disabled?: boolean;
+        "full-width"?: boolean;
         // ... more properties
+      };
+      "modus-wc-alert": {
+        variant?: "success" | "warning" | "error" | "info";
+        "alert-title"?: string;
+        dismissible?: boolean;
       };
     }
   }
@@ -320,7 +347,7 @@ npm run lint:colors
 This boilerplate includes a pre-commit hook that automatically checks for non-Modus color usage:
 
 - **Detects Tailwind colors** - Flags usage of `red-400`, `blue-500`, etc.
-- **Detects hardcoded colors** - Catches hex codes like `#ff0000`, RGB values
+- **Detects hardcoded colors** - Catches hex codes like `#ff0000`, RGB values, and Modus hex values
 - **Suggests Modus alternatives** - Provides proper Modus CSS custom properties
 - **Runs on commit** - Automatically validates staged files before commit
 
@@ -329,15 +356,17 @@ This boilerplate includes a pre-commit hook that automatically checks for non-Mo
 ```css
 /* ❌ Will be flagged */
 .button {
-  background-color: red-500;
+  background-color: red-500; /* Tailwind color */
+  color: #f1f1f6; /* Hardcoded Modus hex */
 }
 .text {
-  color: #ff0000;
+  color: rgb(23, 28, 30); /* RGB equivalent of Modus color */
 }
 
 /* ✅ Correct Modus usage */
 .button {
-  background-color: var(--modus-wc-color-danger);
+  background-color: var(--modus-wc-color-error);
+  color: var(--modus-wc-color-base-100);
 }
 .text {
   color: var(--modus-wc-color-base-content);
@@ -346,20 +375,22 @@ This boilerplate includes a pre-commit hook that automatically checks for non-Mo
 
 **Available Modus Color Variables (9 colors total):**
 
-- `var(--modus-wc-color-primary)` - Primary brand color
-- `var(--modus-wc-color-secondary)` - Secondary color
-- `var(--modus-wc-color-success)` - Success/positive actions
-- `var(--modus-wc-color-warning)` - Warning/caution states
-- `var(--modus-wc-color-error)` - Error/destructive actions
-- `var(--modus-wc-color-info)` - Informational content
-- `var(--modus-wc-color-base-page)` - Background color
-- `var(--modus-wc-color-base-content)` - Text color
-- `var(--modus-wc-color-border)` - Border color
-- `var(--modus-wc-color-base-100)` - Light gray variant
-- `var(--modus-wc-color-base-200)` - Medium gray variant
-- `var(--modus-wc-color-base-300)` - Dark gray variant
+**Base Colors (5 total):**
 
-> **Note:** `--modus-wc-color-danger` is an alias for `--modus-wc-color-error`
+- `var(--modus-wc-color-base-page)` - Background: #fff (light) / #000 (dark)
+- `var(--modus-wc-color-base-100)` - Light gray: #f1f1f6 (light) / #252a2e (dark)
+- `var(--modus-wc-color-base-200)` - Medium gray: #cbcdd6 (light) / #464b52 (dark)
+- `var(--modus-wc-color-base-300)` - Dark gray: #b7b9c3 (light) / #353a40 (dark)
+- `var(--modus-wc-color-base-content)` - Text: #171c1e (light) / #cbcdd6 (dark)
+
+**Semantic Colors (4 total - same in both themes):**
+
+- `var(--modus-wc-color-info)` - Blue: #0063a3
+- `var(--modus-wc-color-success)` - Green: #1e8a44
+- `var(--modus-wc-color-error)` - Red: #da212c
+- `var(--modus-wc-color-warning)` - Orange: #fbad26
+
+> **Note:** Component props like `primary`, `secondary`, `tertiary`, and `danger` map to these CSS variables internally.
 
 ## Deployment
 
@@ -387,9 +418,20 @@ Use Modus CSS custom properties for consistent theming:
 
 ```css
 .custom-component {
-  background-color: var(--modus-wc-color-primary);
-  color: var(--modus-wc-color-base-page);
-  border: 1px solid var(--modus-wc-color-border);
+  background-color: var(--modus-wc-color-base-100);
+  color: var(--modus-wc-color-base-content);
+  border: 1px solid var(--modus-wc-color-base-200);
+}
+
+/* Status-specific styling */
+.success-message {
+  color: var(--modus-wc-color-success);
+  border-left: 3px solid var(--modus-wc-color-success);
+}
+
+.error-message {
+  color: var(--modus-wc-color-error);
+  border-left: 3px solid var(--modus-wc-color-error);
 }
 ```
 
