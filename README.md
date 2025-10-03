@@ -1,4 +1,4 @@
-![Modus Vue Boilerplate Hero](hero.png)
+![Modus Vue Boilerplate Hero](readme_assets/hero.png)
 
 # Modus Vue Boilerplate
 
@@ -56,7 +56,7 @@ This boilerplate provides a complete foundation for building Vue.js applications
 
 ## 🎨 Figma to Code Integration
 
-![Modus Figma MCP](modus_figma_mcp.png)
+![Modus Figma MCP](readme_assets/modus_figma_mcp.png)
 
 If you're working with Figma designs and want AI-assisted coding that understands your design tokens and components, check out the official Modus Figma MCP integration. This powerful tool bridges the gap between design and development by providing direct access to your Figma designs through AI assistants.
 
@@ -66,7 +66,7 @@ If you're working with Figma designs and want AI-assisted coding that understand
 
 ##
 
-![Modus Figma MCP](getting_started_header.png)
+![Modus Figma MCP](readme_assets/getting_started_header.png)
 
 ### Prerequisites
 
