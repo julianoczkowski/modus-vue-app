@@ -17,7 +17,7 @@
     "web-components",
     "typescript"
   ],
-  "author": "",
+  "author": "Julian Oczkowski",
   "license": "MIT",
   "engines": {
     "node": ">=20.0.0",
