@@ -118,7 +118,7 @@ modus-vue-app/
 │   ├── components/          # Reusable Vue components
 │   │   └── ModusIcon.vue   # Icon wrapper component
 │   ├── views/              # Page components
-│   │   ├── Home.vue        # Landing page with examples (can be removed)
+│   │   ├── Home.vue        # Landing page with examples
 │   │   └── ButtonDemo.vue  # Comprehensive component demos  (can be removed)
 │   ├── router/             # Vue Router configuration
 │   ├── types/              # TypeScript definitions
@@ -140,6 +140,7 @@ modus-vue-app/
    - Modify `package.json` with your project details
    - Update the app title in `index.html`
    - Replace demo content in `Home.vue` with your application content
+   - You can delete `ButtonDemo.vue` if you don't need it
 
 2. **Add your components:**
 
