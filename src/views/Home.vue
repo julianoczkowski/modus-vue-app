@@ -143,7 +143,7 @@ const handleExampleClick = () => {
 
 .hero-title {
   font-size: 2.5rem;
-  color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-base-content);
   margin-bottom: 1rem;
   font-weight: 600;
 }
@@ -165,8 +165,8 @@ const handleExampleClick = () => {
 }
 
 .feature-card {
-  background-color: var(--modus-wc-color-bg-2);
-  border: 1px solid var(--modus-wc-color-border);
+  background-color: var(--modus-wc-color-base-100);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 8px;
   padding: 2rem;
   text-align: center;
@@ -180,7 +180,7 @@ const handleExampleClick = () => {
 
 .feature-icon {
   font-size: 3rem;
-  color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-base-content);
   margin-bottom: 1rem;
 }
 
@@ -201,14 +201,14 @@ const handleExampleClick = () => {
 }
 
 .quick-start {
-  background-color: var(--modus-wc-color-bg-2);
+  background-color: var(--modus-wc-color-base-100);
   border-radius: 8px;
   padding: 2rem;
   margin-top: 3rem;
 }
 
 .quick-start h2 {
-  color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-base-content);
   margin-bottom: 1rem;
 }
 
@@ -219,7 +219,7 @@ const handleExampleClick = () => {
 
 .code-example {
   background-color: var(--modus-wc-color-base-page);
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   padding: 1rem;
   margin-bottom: 1.5rem;
@@ -236,7 +236,7 @@ const handleExampleClick = () => {
 
 .example-result {
   padding: 1rem;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   background-color: var(--modus-wc-color-base-page);
 }

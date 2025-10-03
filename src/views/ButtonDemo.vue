@@ -516,7 +516,7 @@ const clearLogs = () => {
 }
 
 .demo-header h1 {
-  color: var(--modus-wc-color-info);
+  color: var(--modus-wc-color-base-content);
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
@@ -532,13 +532,13 @@ const clearLogs = () => {
 .demo-section {
   margin-bottom: 3rem;
   padding: 2rem;
-  background-color: var(--modus-wc-color-base-page);
+  background-color: var(--modus-wc-color-base-100);
   border-radius: 8px;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
 }
 
 .demo-section h2 {
-  color: var(--modus-wc-color-info);
+  color: var(--modus-wc-color-base-content);
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
@@ -589,7 +589,7 @@ const clearLogs = () => {
 .form-input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   background-color: var(--modus-wc-color-base-page);
   color: var(--modus-wc-color-base-content);
@@ -598,7 +598,7 @@ const clearLogs = () => {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--modus-wc-color-primary);
+  border-color: var(--modus-wc-color-base-300);
   box-shadow: 0 0 0 2px rgba(0, 119, 200, 0.2);
 }
 
@@ -636,7 +636,7 @@ const clearLogs = () => {
 
 .control-select {
   padding: 0.5rem;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   background-color: var(--modus-wc-color-base-page);
   color: var(--modus-wc-color-base-content);
@@ -659,7 +659,7 @@ const clearLogs = () => {
 
 .preview-area {
   padding: 2rem;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   background-color: var(--modus-wc-color-base-page);
   text-align: center;
@@ -676,7 +676,7 @@ const clearLogs = () => {
 
 .code-output pre {
   background-color: var(--modus-wc-color-base-page);
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   padding: 1rem;
   overflow-x: auto;
@@ -707,7 +707,7 @@ const clearLogs = () => {
 .log-container {
   max-height: 200px;
   overflow-y: auto;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   padding: 1rem;
   background-color: var(--modus-wc-color-base-page);
@@ -723,7 +723,7 @@ const clearLogs = () => {
 }
 
 .log-timestamp {
-  color: var(--modus-wc-color-secondary);
+  color: var(--modus-wc-color-base-content);
   min-width: 80px;
 }
 
@@ -732,7 +732,7 @@ const clearLogs = () => {
 }
 
 .log-empty {
-  color: var(--modus-wc-color-secondary);
+  color: var(--modus-wc-color-base-content);
   font-style: italic;
   text-align: center;
   padding: 2rem;

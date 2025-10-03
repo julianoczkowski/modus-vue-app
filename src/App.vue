@@ -4,7 +4,7 @@
     <header class="app-header">
       <nav class="nav-container">
         <div class="nav-brand">
-          <h1>Modus Vue Demo</h1>
+          <h1>Modus 2 Vue Demo</h1>
         </div>
         <div class="nav-links">
           <router-link to="/" class="nav-link">Home</router-link>
@@ -65,7 +65,7 @@ onMounted(() => {
 <style scoped>
 .app-header {
   background-color: var(--modus-wc-color-base-page);
-  border-bottom: 1px solid var(--modus-wc-color-border);
+  border-bottom: 1px solid var(--modus-wc-color-base-200);
   padding: 1rem 0;
 }
 
@@ -79,7 +79,7 @@ onMounted(() => {
 }
 
 .nav-brand h1 {
-  color: var(--modus-wc-color-primary);
+  color: var(--modus-wc-color-base-content);
   margin: 0;
   font-size: 1.5rem;
 }
@@ -99,13 +99,13 @@ onMounted(() => {
 
 .nav-link:hover,
 .nav-link.router-link-active {
-  background-color: var(--modus-wc-color-bg-2);
-  color: var(--modus-wc-color-primary);
+  background-color: var(--modus-wc-color-base-100);
+  color: var(--modus-wc-color-base-content);
 }
 
 .theme-selector {
   padding: 0.5rem;
-  border: 1px solid var(--modus-wc-color-border);
+  border: 1px solid var(--modus-wc-color-base-200);
   border-radius: 4px;
   background-color: var(--modus-wc-color-base-page);
   color: var(--modus-wc-color-base-content);
@@ -119,7 +119,7 @@ onMounted(() => {
 }
 
 .app-footer {
-  background-color: var(--modus-wc-color-bg-2);
+  background-color: var(--modus-wc-color-base-100);
   text-align: center;
   padding: 1rem;
   color: var(--modus-wc-color-base-content);
