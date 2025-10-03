@@ -1,0 +1,337 @@
+---
+alwaysApply: true
+---
+
+# Modus Web Components Usage Rules
+
+## 📚 Documentation & Context Gathering
+
+### 🤖 Use MCP Documentation Server
+
+Before implementing any Modus Web Component, **ALWAYS** use the `modus-docs` MCP server to gather accurate, up-to-date documentation:
+
+```bash
+# MCP server is configured in .cursor/mcp.json
+# Use it to query component documentation, props, events, and examples
+```
+
+**Available via MCP:**
+
+- Component API documentation
+- Props and their types
+- Event handlers and custom events
+- Usage examples and best practices
+- Accessibility guidelines
+- Theme compatibility information
+
+### 📖 Official Storybook Reference
+
+Always reference the official Modus Web Components Storybook for comprehensive examples and interactive documentation:
+
+**Primary Documentation Source:** [Modus Web Components Storybook](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/documentation-getting-started--docs)
+
+**Use Storybook for:**
+
+- Interactive component examples
+- Visual component variations
+- Props playground and testing
+- Accessibility features demonstration
+- Theme switching examples
+- Code snippets and implementation patterns
+
+## 🧩 Component Implementation Guidelines
+
+### ✅ Before Implementing Any Modus Component:
+
+1. **Query MCP Documentation:**
+
+   ```
+   Ask: "What are the available props for modus-wc-button component?"
+   Ask: "How do I handle events for modus-wc-modal?"
+   Ask: "What accessibility features does modus-wc-table provide?"
+   ```
+
+2. **Check Storybook Examples:**
+
+   - Visit the component's story in Storybook
+   - Review all available variants and configurations
+   - Test interactive examples
+   - Copy recommended code patterns
+
+3. **Verify Theme Compatibility:**
+   - Ensure component works with all 4 themes
+   - Test light/dark mode switching
+   - Verify color contrast and accessibility
+
+### 🎯 Component Usage Patterns
+
+#### Standard Modus Web Component Implementation:
+
+```vue
+<template>
+  <div class="component-wrapper">
+    <!-- Always use semantic HTML structure -->
+    <modus-wc-button
+      :color="buttonColor"
+      :variant="buttonVariant"
+      :size="buttonSize"
+      :disabled="isDisabled"
+      @button-click="handleButtonClick"
+      @focus="handleFocus"
+      @blur="handleBlur"
+    >
+      <i class="modus-icons" style="margin-right: 8px">{{ iconName }}</i>
+      {{ buttonText }}
+    </modus-wc-button>
+  </div>
+</template>
+
+<script setup lang="ts">
+// Always define proper TypeScript interfaces
+interface Props {
+  buttonColor?: "info" | "success" | "warning" | "error";
+  buttonVariant?: "filled" | "outlined" | "borderless";
+  buttonSize?: "xs" | "sm" | "md" | "lg";
+  buttonText: string;
+  iconName?: string;
+  isDisabled?: boolean;
+}
+
+// Use withDefaults for optional props
+withDefaults(defineProps<Props>(), {
+  buttonColor: "info",
+  buttonVariant: "filled",
+  buttonSize: "md",
+  isDisabled: false,
+});
+
+// Define emits for parent communication
+const emit = defineEmits<{
+  action: [payload: { type: string; data: any }];
+  focus: [event: FocusEvent];
+  blur: [event: FocusEvent];
+}>();
+
+// Event handlers following Modus patterns
+const handleButtonClick = (event: CustomEvent) => {
+  emit("action", {
+    type: "button-click",
+    data: event.detail,
+  });
+};
+
+const handleFocus = (event: FocusEvent) => {
+  emit("focus", event);
+};
+
+const handleBlur = (event: FocusEvent) => {
+  emit("blur", event);
+};
+</script>
+
+<style scoped>
+.component-wrapper {
+  /* Use Modus CSS variables for consistent theming */
+  padding: var(--modus-wc-spacing-md, 1rem);
+  background-color: var(--modus-wc-color-base-page);
+}
+
+/* Responsive design considerations */
+@media (max-width: 768px) {
+  .component-wrapper {
+    padding: var(--modus-wc-spacing-sm, 0.5rem);
+  }
+}
+</style>
+```
+
+### 📋 Modus Component Implementation Checklist
+
+For every Modus Web Component implementation:
+
+- [ ] ✅ **MCP Query**: Used modus-docs MCP to get component documentation
+- [ ] ✅ **Storybook Review**: Checked official Storybook examples and variants
+- [ ] ✅ **Props Validation**: Defined proper TypeScript interfaces for all props
+- [ ] ✅ **Event Handling**: Implemented proper event listeners and emits
+- [ ] ✅ **Accessibility**: Included ARIA labels, roles, and keyboard navigation
+- [ ] ✅ **Theme Testing**: Tested with all 4 Modus themes (classic/modern, light/dark)
+- [ ] ✅ **Responsive Design**: Ensured component works on mobile and desktop
+- [ ] ✅ **Error Handling**: Added proper error states and validation
+- [ ] ✅ **Documentation**: Added JSDoc comments for complex implementations
+- [ ] ✅ **Testing**: Verified component behavior matches Storybook examples
+
+### 🎨 Supported Modus Web Components
+
+**Common Components** (Always check MCP/Storybook for latest):
+
+```vue
+<!-- Buttons -->
+<modus-wc-button color="info" variant="outlined">Button</modus-wc-button>
+
+<!-- Form Elements -->
+<modus-wc-text-input label="Username" required />
+<modus-wc-select label="Country" :options="countries" />
+<modus-wc-checkbox label="Agree to terms" />
+<modus-wc-radio-group :options="radioOptions" />
+
+<!-- Navigation -->
+<modus-wc-tabs :tabs="tabData" />
+<modus-wc-navbar :items="navItems" />
+
+<!-- Feedback -->
+<modus-wc-alert variant="success" dismissible>Success message</modus-wc-alert>
+<modus-wc-modal :show="isModalOpen" title="Modal Title" />
+<modus-wc-toast message="Toast notification" />
+
+<!-- Data Display -->
+<modus-wc-table :data="tableData" :columns="tableColumns" />
+<modus-wc-card title="Card Title">Card content</modus-wc-card>
+<modus-wc-badge text="New" color="success" />
+```
+
+### 🔧 Advanced Implementation Patterns
+
+#### Complex Component with Multiple Features:
+
+```vue
+<template>
+  <div class="advanced-component">
+    <modus-wc-modal
+      :show="isVisible"
+      :title="modalTitle"
+      :size="modalSize"
+      :closable="isClosable"
+      @modal-close="handleModalClose"
+      @modal-open="handleModalOpen"
+    >
+      <template #header>
+        <div class="modal-header-content">
+          <h2>{{ customTitle }}</h2>
+          <modus-wc-button
+            variant="borderless"
+            size="sm"
+            @button-click="handleHeaderAction"
+          >
+            <i class="modus-icons">settings</i>
+          </modus-wc-button>
+        </div>
+      </template>
+
+      <div class="modal-body">
+        <modus-wc-text-input
+          v-model="formData.name"
+          label="Name"
+          :required="true"
+          :error-text="nameError"
+          @input="validateName"
+        />
+
+        <modus-wc-select
+          v-model="formData.category"
+          label="Category"
+          :options="categoryOptions"
+          @selection-change="handleCategoryChange"
+        />
+      </div>
+
+      <template #footer>
+        <div class="modal-actions">
+          <modus-wc-button variant="outlined" @button-click="handleCancel">
+            Cancel
+          </modus-wc-button>
+          <modus-wc-button
+            color="success"
+            :disabled="!isFormValid"
+            @button-click="handleSubmit"
+          >
+            Save Changes
+          </modus-wc-button>
+        </div>
+      </template>
+    </modus-wc-modal>
+  </div>
+</template>
+```
+
+### 🚫 Common Anti-Patterns to Avoid
+
+- ❌ **Not checking MCP documentation** before implementation
+- ❌ **Ignoring Storybook examples** and implementing custom patterns
+- ❌ **Missing event handlers** for component interactions
+- ❌ **Hardcoding values** instead of using component props
+- ❌ **Not testing with all themes** (classic/modern, light/dark)
+- ❌ **Ignoring accessibility features** provided by components
+- ❌ **Not handling error states** or loading states
+- ❌ **Mixing Modus components with non-Modus UI elements** inconsistently
+
+### 📖 Documentation Workflow
+
+#### Step 1: Query MCP Documentation
+
+```
+Before implementing modus-wc-table:
+1. Ask MCP: "What props does modus-wc-table accept?"
+2. Ask MCP: "How do I handle row selection in modus-wc-table?"
+3. Ask MCP: "What events does modus-wc-table emit?"
+```
+
+#### Step 2: Review Storybook Examples
+
+```
+1. Visit: https://trimble-oss.github.io/modus-wc-2.0/main/?path=/story/components-table--default
+2. Test different configurations in the playground
+3. Copy recommended implementation patterns
+4. Note accessibility features and requirements
+```
+
+#### Step 3: Implement with Best Practices
+
+```
+1. Use TypeScript interfaces for props
+2. Implement proper event handling
+3. Add accessibility attributes
+4. Test with all themes
+5. Document complex implementations
+```
+
+### 🎯 Integration with Vue Ecosystem
+
+#### Router Integration:
+
+```vue
+<modus-wc-button @button-click="navigateToPage">
+  Go to Dashboard
+</modus-wc-button>
+
+<script setup lang="ts">
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const navigateToPage = () => {
+  router.push("/dashboard");
+};
+</script>
+```
+
+#### State Management Integration:
+
+```vue
+<modus-wc-text-input
+  :value="userStore.username"
+  @input="userStore.updateUsername"
+  label="Username"
+/>
+
+<script setup lang="ts">
+import { useUserStore } from "@/stores/user";
+
+const userStore = useUserStore();
+</script>
+```
+
+---
+
+**Remember: Always use MCP documentation and Storybook examples as your primary sources of truth for Modus Web Component implementation. This ensures consistency, accessibility, and proper integration with the Modus Design System.**
+
+**Official Documentation:** [Modus Web Components Storybook](https://trimble-oss.github.io/modus-wc-2.0/main/?path=/docs/documentation-getting-started--docs)

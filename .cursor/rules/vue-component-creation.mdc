@@ -1,0 +1,260 @@
+---
+alwaysApply: true
+---
+
+# Vue Component Creation Rules
+
+## Component Architecture & CSS Guidelines
+
+### 🏗️ Component Structure
+
+When creating new Vue components, follow this structure:
+
+```vue
+<template>
+  <!-- Use semantic HTML with proper accessibility -->
+  <div class="component-name">
+    <!-- Component content -->
+  </div>
+</template>
+
+<script setup lang="ts">
+// TypeScript interfaces for props
+interface Props {
+  // Define props with proper types
+}
+
+// Use withDefaults for optional props
+withDefaults(defineProps<Props>(), {
+  // Default values
+});
+
+// Component logic
+</script>
+
+<style scoped>
+/* Component-specific styles using Modus CSS variables */
+</style>
+```
+
+### 🎨 CSS Architecture Rules
+
+#### ✅ ALWAYS Use Scoped CSS
+
+- Every component should have `<style scoped>`
+- Keep component styles self-contained and isolated
+- Prevents style conflicts between components
+
+#### ✅ Use ONLY Modus CSS Variables
+
+**Required Modus Colors (9 total):**
+
+```css
+/* Base colors */
+var(--modus-wc-color-base-page)     /* Background: #fff (light) / #000 (dark) */
+var(--modus-wc-color-base-100)      /* Light gray: #f1f1f6 (light) / #252a2e (dark) */
+var(--modus-wc-color-base-200)      /* Medium gray: #cbcdd6 (light) / #464b52 (dark) */
+var(--modus-wc-color-base-300)      /* Dark gray: #b7b9c3 (light) / #353a40 (dark) */
+var(--modus-wc-color-base-content)  /* Text: #171c1e (light) / #cbcdd6 (dark) */
+
+/* Semantic colors (same in both themes) */
+var(--modus-wc-color-info)          /* Blue: #0063a3 */
+var(--modus-wc-color-success)       /* Green: #1e8a44 */
+var(--modus-wc-color-error)         /* Red: #da212c */
+var(--modus-wc-color-warning)       /* Orange: #fbad26 */
+```
+
+#### ❌ NEVER Use These (Will be flagged by linter):
+
+- Hardcoded hex colors: `#fff`, `#f1f1f6`, `#0063a3`, etc.
+- Tailwind colors: `red-500`, `blue-400`, `bg-gray-100`, etc.
+
+### 📁 Component Placement Rules
+
+#### Reusable Components → `/src/components/`
+
+```
+src/components/
+├── AppHeader.vue          # Global header component
+├── UserMenu.vue           # Reusable menu component
+├── ModusIcon.vue          # Icon wrapper component
+└── DataTable.vue          # Shared table component
+```
+
+#### Page Components → `/src/views/`
+
+```
+src/views/
+├── Home.vue               # Landing page
+├── Dashboard.vue          # Dashboard page
+├── Profile.vue            # User profile page
+└── Settings.vue           # Settings page
+```
+
+### 🔄 Reusable Component Pattern
+
+When creating components that will be used across multiple pages:
+
+```vue
+<!-- src/components/AppHeader.vue -->
+<template>
+  <header class="app-header">
+    <nav class="nav-container">
+      <div class="nav-brand">
+        <slot name="brand">
+          <h1>{{ title }}</h1>
+        </slot>
+      </div>
+      <div class="nav-content">
+        <slot name="navigation" />
+      </div>
+      <div class="nav-actions">
+        <slot name="actions" />
+      </div>
+    </nav>
+  </header>
+</template>
+
+<script setup lang="ts">
+interface Props {
+  title?: string;
+  sticky?: boolean;
+}
+
+withDefaults(defineProps<Props>(), {
+  title: "Modus Vue App",
+  sticky: true,
+});
+</script>
+
+<style scoped>
+.app-header {
+  background-color: var(--modus-wc-color-base-page);
+  border-bottom: 1px solid var(--modus-wc-color-base-200);
+  padding: 1rem 0;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+/* More scoped styles using Modus variables */
+</style>
+```
+
+### 🎯 Component Usage Pattern
+
+```vue
+<!-- src/views/Dashboard.vue -->
+<template>
+  <div>
+    <AppHeader title="Dashboard">
+      <template #navigation>
+        <router-link to="/dashboard" class="nav-link">Overview</router-link>
+        <router-link to="/reports" class="nav-link">Reports</router-link>
+      </template>
+      <template #actions>
+        <modus-wc-button color="info" size="sm">Export</modus-wc-button>
+      </template>
+    </AppHeader>
+
+    <main class="dashboard-content">
+      <!-- Page-specific content -->
+    </main>
+  </div>
+</template>
+
+<script setup lang="ts">
+import AppHeader from "@/components/AppHeader.vue";
+</script>
+
+<style scoped>
+.dashboard-content {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--modus-wc-color-base-page);
+}
+
+.nav-link {
+  color: var(--modus-wc-color-base-content);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--modus-wc-color-base-100);
+}
+</style>
+```
+
+### 📋 Component Creation Checklist
+
+When creating any new component:
+
+- [ ] ✅ Use `<style scoped>` for component isolation
+- [ ] ✅ Only use the 9 approved Modus CSS variables
+- [ ] ✅ Define TypeScript interfaces for props
+- [ ] ✅ Use `withDefaults()` for optional props
+- [ ] ✅ Include proper accessibility attributes
+- [ ] ✅ Use slots for flexible content areas
+- [ ] ✅ Place in correct directory (`/components/` or `/views/`)
+- [ ] ✅ Follow Vue 3 Composition API patterns
+- [ ] ✅ Include responsive design considerations
+- [ ] ✅ Test with both light and dark themes
+
+### 🚫 Anti-Patterns to Avoid
+
+- ❌ Global CSS classes that could conflict
+- ❌ Hardcoded colors instead of Modus variables
+- ❌ Inline styles for colors (use CSS variables)
+- ❌ Non-semantic HTML structure
+- ❌ Missing TypeScript types for props
+- ❌ Overly complex components (break them down)
+- ❌ Tight coupling between components
+
+### 🎨 Modus Web Component Integration
+
+When using Modus web components in your Vue components:
+
+```vue
+<template>
+  <div class="form-section">
+    <modus-wc-button color="info" variant="outlined" @click="handleAction">
+      <i class="modus-icons" style="margin-right: 8px">save_disk</i>
+      Save Changes
+    </modus-wc-button>
+  </div>
+</template>
+
+<style scoped>
+.form-section {
+  padding: 1rem;
+  background-color: var(--modus-wc-color-base-100);
+  border: 1px solid var(--modus-wc-color-base-200);
+  border-radius: 8px;
+}
+</style>
+```
+
+### 🔧 Pre-commit Color Linting
+
+The project includes automatic color linting that will:
+
+- ✅ Detect hardcoded Modus hex values
+- ✅ Suggest proper CSS variables
+- ✅ Block commits with color violations
+- ✅ Provide helpful error messages
+
+Run `npm run lint:colors` to manually check for violations.
+
+---
+
+**Remember: Consistency is key! Follow these patterns to maintain a scalable, maintainable Vue application with proper Modus Design System integration.**

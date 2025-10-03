@@ -1,0 +1,354 @@
+---
+alwaysApply: true
+---
+
+# Color Usage Rules
+
+## 🎨 Approved Modus Colors (9 Total)
+
+### ✅ ONLY Use These Modus CSS Variables
+
+**Base Colors (5 total):**
+
+```css
+/* Light Theme → Dark Theme */
+var(--modus-wc-color-base-page)     /* #fff → #000 */
+var(--modus-wc-color-base-100)      /* #f1f1f6 → #252a2e */
+var(--modus-wc-color-base-200)      /* #cbcdd6 → #464b52 */
+var(--modus-wc-color-base-300)      /* #b7b9c3 → #353a40 */
+var(--modus-wc-color-base-content)  /* #171c1e → #cbcdd6 */
+```
+
+**Semantic Colors (4 total - same in both themes):**
+
+```css
+var(--modus-wc-color-info)          /* #0063a3 */
+var(--modus-wc-color-success)       /* #1e8a44 */
+var(--modus-wc-color-error)         /* #da212c */
+var(--modus-wc-color-warning)       /* #fbad26 */
+```
+
+**Note:** `primary`, `secondary`, `tertiary`, and `danger` are component-specific color props that map to these CSS variables internally.
+
+### 🎯 Color Usage Patterns
+
+#### Correct Implementation:
+
+```vue
+<template>
+  <div class="component">
+    <modus-wc-button color="primary">Primary Button</modus-wc-button>
+    <modus-wc-button color="secondary">Secondary Button</modus-wc-button>
+    <modus-wc-button color="warning">Warning Button</modus-wc-button>
+    <modus-wc-button color="danger">Danger Button</modus-wc-button>
+  </div>
+</template>
+
+<style scoped>
+.component {
+  background-color: var(--modus-wc-color-base-page);
+  border: 1px solid var(--modus-wc-color-base-200);
+  color: var(--modus-wc-color-base-content);
+}
+
+.component:hover {
+  background-color: var(--modus-wc-color-base-100);
+}
+</style>
+```
+
+## 🚫 NEVER Use These Colors
+
+### ❌ Hardcoded Hex Values
+
+```css
+/* FORBIDDEN - Will be flagged by linter */
+color: #fff;
+background: #f1f1f6;
+border-color: #0063a3;
+background-color: #da212c;
+```
+
+### ❌ Hardcoded RGB/RGBA Values
+
+```css
+/* FORBIDDEN - Will be flagged by linter */
+color: rgb(255, 255, 255);
+background: rgba(241, 241, 246, 0.8);
+border-color: rgb(0, 99, 163);
+```
+
+### ❌ Tailwind Color Classes
+
+```css
+/* FORBIDDEN - Will be flagged by linter */
+.text-red-500 .bg-blue-400 .border-gray-300 .text-green-600 .bg-slate-100;
+```
+
+### ❌ Non-Modus CSS Variables
+
+```css
+/* FORBIDDEN - These don't exist in our system */
+var(--secondary)
+var(--tertiary)
+var(--danger)  /* Use --modus-wc-color-error instead */
+var(--border)
+var(--text-primary)
+var(--bg-secondary)
+```
+
+### ❌ Custom Color Variables
+
+```css
+/* FORBIDDEN - Don't create your own color variables */
+:root {
+  --my-blue: #0063a3;
+  --custom-gray: #f1f1f6;
+  --app-red: #da212c;
+}
+```
+
+## 🎨 Color Mapping Guide
+
+### Common Color Needs → Modus Variables
+
+**Backgrounds:**
+
+```css
+/* Page/container backgrounds */
+background-color: var(--modus-wc-color-base-page);
+
+/* Card/section backgrounds */
+background-color: var(--modus-wc-color-base-100);
+
+/* Subtle backgrounds */
+background-color: var(--modus-wc-color-base-200);
+```
+
+**Text Colors:**
+
+```css
+/* Primary text */
+color: var(--modus-wc-color-base-content);
+
+/* Status text */
+color: var(--modus-wc-color-success); /* Success messages */
+color: var(--modus-wc-color-error); /* Error messages */
+color: var(--modus-wc-color-warning); /* Warning messages */
+color: var(--modus-wc-color-info); /* Info messages */
+```
+
+**Borders:**
+
+```css
+/* Light borders */
+border: 1px solid var(--modus-wc-color-base-200);
+
+/* Medium borders */
+border: 1px solid var(--modus-wc-color-base-300);
+
+/* Status borders */
+border: 1px solid var(--modus-wc-color-error);
+border: 1px solid var(--modus-wc-color-success);
+```
+
+## 🔧 Modus Web Component Colors
+
+### Button Colors (5 options):
+
+```vue
+<modus-wc-button color="primary">Primary</modus-wc-button>
+<modus-wc-button color="secondary">Secondary</modus-wc-button>
+<modus-wc-button color="tertiary">Tertiary</modus-wc-button>
+<modus-wc-button color="warning">Warning</modus-wc-button>
+<modus-wc-button color="danger">Danger</modus-wc-button>
+```
+
+### Alert/Badge Colors (4 options):
+
+```vue
+<modus-wc-alert variant="info">Info alert</modus-wc-alert>
+<modus-wc-alert variant="success">Success alert</modus-wc-alert>
+<modus-wc-alert variant="warning">Warning alert</modus-wc-alert>
+<modus-wc-alert variant="error">Error alert</modus-wc-alert>
+```
+
+## 🛡️ Pre-commit Color Linting
+
+### Automatic Detection
+
+The project automatically detects and prevents:
+
+- Hardcoded Modus hex values (`#fff`, `#f1f1f6`, etc.)
+- Tailwind color classes (`red-500`, `bg-blue-400`, etc.)
+- RGB/RGBA color values
+- Non-Modus CSS variables
+
+### Manual Check
+
+```bash
+npm run lint:colors
+```
+
+### Common Violations & Fixes
+
+#### ❌ Violation:
+
+```css
+.header {
+  background-color: #f1f1f6;
+  color: #171c1e;
+  border-bottom: 1px solid #cbcdd6;
+}
+```
+
+#### ✅ Correct:
+
+```css
+.header {
+  background-color: var(--modus-wc-color-base-100);
+  color: var(--modus-wc-color-base-content);
+  border-bottom: 1px solid var(--modus-wc-color-base-200);
+}
+```
+
+## 🎯 Theme Compatibility
+
+### Automatic Theme Switching
+
+Using Modus CSS variables ensures your components work with all 4 themes:
+
+- **Classic Light** (default)
+- **Classic Dark**
+- **Modern Light**
+- **Modern Dark**
+
+### Testing Requirements
+
+Always test your components with:
+
+```vue
+<template>
+  <div class="theme-test">
+    <!-- Your component here -->
+  </div>
+</template>
+
+<style scoped>
+.theme-test {
+  /* Will automatically adapt to current theme */
+  background-color: var(--modus-wc-color-base-page);
+  color: var(--modus-wc-color-base-content);
+}
+</style>
+```
+
+## 📋 Color Usage Checklist
+
+For every component with colors:
+
+- [ ] ✅ **Only Modus Variables**: Used only the 9 approved Modus CSS variables
+- [ ] ✅ **No Hardcoded Values**: No hex, RGB, or RGBA values in CSS
+- [ ] ✅ **No Tailwind Classes**: No Tailwind color utility classes
+- [ ] ✅ **No Custom Variables**: No custom color CSS variables created
+- [ ] ✅ **Semantic Usage**: Used semantic colors appropriately (info, success, warning, error)
+- [ ] ✅ **Theme Testing**: Tested with both light and dark themes
+- [ ] ✅ **Linting Passed**: `npm run lint:colors` passes without violations
+- [ ] ✅ **Component Props**: Used correct color props for Modus web components
+
+## 🚨 Common Mistakes to Avoid
+
+### ❌ Don't Mix Color Systems
+
+```vue
+<!-- WRONG: Mixing Tailwind with Modus -->
+<div class="bg-gray-100 p-4">
+  <modus-wc-button color="primary">Button</modus-wc-button>
+</div>
+```
+
+### ❌ Don't Hardcode Theme-Specific Values
+
+```css
+/* WRONG: Will break in dark theme */
+.card {
+  background: white;
+  color: black;
+}
+```
+
+### ❌ Don't Create Color Aliases
+
+```css
+/* WRONG: Don't create shortcuts */
+:root {
+  --bg: var(--modus-wc-color-base-page);
+  --text: var(--modus-wc-color-base-content);
+}
+```
+
+### ✅ Correct Approach
+
+```vue
+<template>
+  <div class="card">
+    <modus-wc-button color="primary">Button</modus-wc-button>
+  </div>
+</template>
+
+<style scoped>
+.card {
+  background-color: var(--modus-wc-color-base-page);
+  color: var(--modus-wc-color-base-content);
+  border: 1px solid var(--modus-wc-color-base-200);
+  padding: 1rem;
+}
+</style>
+```
+
+## 🎨 Advanced Color Patterns
+
+### Hover States
+
+```css
+.interactive-element {
+  background-color: var(--modus-wc-color-base-page);
+  transition: background-color 0.2s ease;
+}
+
+.interactive-element:hover {
+  background-color: var(--modus-wc-color-base-100);
+}
+```
+
+### Status Indicators
+
+```css
+.status-success {
+  color: var(--modus-wc-color-success);
+  border-left: 3px solid var(--modus-wc-color-success);
+}
+
+.status-error {
+  color: var(--modus-wc-color-error);
+  border-left: 3px solid var(--modus-wc-color-error);
+}
+```
+
+### Opacity Variations
+
+```css
+.subtle-background {
+  background-color: var(--modus-wc-color-base-100);
+  opacity: 0.8;
+}
+
+.faded-text {
+  color: var(--modus-wc-color-base-content);
+  opacity: 0.6;
+}
+```
+
+---
+
+**Remember: Consistency is key! Stick to the 9 approved Modus colors for a cohesive, theme-compatible design system. The pre-commit linting will catch violations automatically.**

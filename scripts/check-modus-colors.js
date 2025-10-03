@@ -28,7 +28,7 @@ const TAILWIND_COLOR_PATTERNS = [
   /\bborder-(red|blue|green|yellow|purple|pink|indigo|gray|slate|zinc|neutral|stone|orange|amber|lime|emerald|teal|cyan|sky|violet|fuchsia|rose)-(\d{2,3}|50)\b/g,
 
   // CSS hex colors (Modus-specific hex values that should be flagged)
-  /#(ff0000|00ff00|0000ff|ffff00|ff00ff|00ffff|ffffff|000000|fff|f1f1f6|cbcdd6|b7b9c3|171c1e|0063a3|1e8a44|da212c|fbad26)\b/gi,
+  /#(ff0000|00ff00|0000ff|ffff00|ff00ff|00ffff|ffffff|000000|fff|000|f1f1f6|252a2e|cbcdd6|464b52|b7b9c3|353a40|171c1e|0063a3|1e8a44|da212c|fbad26)\b/gi,
 
   // CSS rgb/rgba colors (basic ones)
   /rgb\(\s*(255,\s*0,\s*0|0,\s*255,\s*0|0,\s*0,\s*255|255,\s*255,\s*0|255,\s*0,\s*255|0,\s*255,\s*255|255,\s*255,\s*255|0,\s*0,\s*0)\s*\)/gi,
@@ -38,7 +38,7 @@ const TAILWIND_COLOR_PATTERNS = [
 const MODUS_COLOR_SUGGESTIONS = {
   red: "var(--modus-wc-color-error)",
   green: "var(--modus-wc-color-success)",
-  blue: "var(--modus-wc-color-primary)",
+  blue: "var(--modus-wc-color-info)",
   info: "var(--modus-wc-color-info)",
   yellow: "var(--modus-wc-color-warning)",
   black: "var(--modus-wc-color-base-content)",
@@ -73,7 +73,7 @@ async function checkFile(filePath) {
       // Get color suggestion
       const colorName = match[1] || extractColorFromHex(match[0]);
       const suggestion =
-        MODUS_COLOR_SUGGESTIONS[colorName] || "var(--modus-wc-color-primary)";
+        MODUS_COLOR_SUGGESTIONS[colorName] || "var(--modus-wc-color-info)";
 
       violations.push({
         file: filePath,
@@ -104,17 +104,20 @@ function extractColorFromHex(hex) {
 
     // Modus-specific hex values (these should be replaced with CSS variables)
     "#fff": "white", // Should use: var(--modus-wc-color-base-page)
+    "#000": "black", // Should use: var(--modus-wc-color-base-page) [dark theme]
     "#f1f1f6": "gray100", // Should use: var(--modus-wc-color-base-100)
+    "#252a2e": "gray100", // Should use: var(--modus-wc-color-base-100) [dark theme]
     "#cbcdd6": "gray200", // Should use: var(--modus-wc-color-base-200)
+    "#464b52": "gray200", // Should use: var(--modus-wc-color-base-200) [dark theme]
     "#b7b9c3": "gray300", // Should use: var(--modus-wc-color-base-300)
+    "#353a40": "gray300", // Should use: var(--modus-wc-color-base-300) [dark theme]
     "#171c1e": "black", // Should use: var(--modus-wc-color-base-content)
     "#0063a3": "blue", // Should use: var(--modus-wc-color-info)
-    "#0063a3": "blue", // Should use: var(--modus-wc-color-primary)
     "#1e8a44": "green", // Should use: var(--modus-wc-color-success)
     "#da212c": "red", // Should use: var(--modus-wc-color-error)
     "#fbad26": "yellow", // Should use: var(--modus-wc-color-warning)
   };
-  return colorMap[hex.toLowerCase()] || "primary";
+  return colorMap[hex.toLowerCase()] || "info";
 }
 
 async function main() {
@@ -170,33 +173,29 @@ async function main() {
         console.log();
       }
 
-      console.log("💡 Modus Color Reference:");
+      console.log("💡 Modus Color Reference (9 colors only):");
       console.log("  Use CSS variables instead of hex values:");
       console.log(
-        "  Base Page: var(--modus-wc-color-base-page) instead of #fff"
+        "  1. Base Page: var(--modus-wc-color-base-page) - #fff (light) / #000 (dark)"
       );
       console.log(
-        "  Base 100: var(--modus-wc-color-base-100) instead of #f1f1f6"
+        "  2. Base 100: var(--modus-wc-color-base-100) - #f1f1f6 (light) / #252a2e (dark)"
       );
       console.log(
-        "  Base 200: var(--modus-wc-color-base-200) instead of #cbcdd6"
+        "  3. Base 200: var(--modus-wc-color-base-200) - #cbcdd6 (light) / #464b52 (dark)"
       );
       console.log(
-        "  Base 300: var(--modus-wc-color-base-300) instead of #b7b9c3"
+        "  4. Base 300: var(--modus-wc-color-base-300) - #b7b9c3 (light) / #353a40 (dark)"
       );
       console.log(
-        "  Base Content: var(--modus-wc-color-base-content) instead of #171c1e"
+        "  5. Base Content: var(--modus-wc-color-base-content) - #171c1e (light) / #cbcdd6 (dark)"
       );
-      console.log("  Info: var(--modus-wc-color-info) instead of #0063a3");
+      console.log("  6. Info: var(--modus-wc-color-info) - #0063a3");
+      console.log("  7. Success: var(--modus-wc-color-success) - #1e8a44");
+      console.log("  8. Error: var(--modus-wc-color-error) - #da212c");
+      console.log("  9. Warning: var(--modus-wc-color-warning) - #fbad26");
       console.log(
-        "  Primary: var(--modus-wc-color-primary) instead of #0063a3"
-      );
-      console.log(
-        "  Success: var(--modus-wc-color-success) instead of #1e8a44"
-      );
-      console.log("  Error: var(--modus-wc-color-error) instead of #da212c");
-      console.log(
-        "  Warning: var(--modus-wc-color-warning) instead of #fbad26"
+        "  Component props: primary, secondary, tertiary, warning, danger (buttons)"
       );
       console.log("  See: https://trimble-oss.github.io/modus-wc-2.0/main/");
 
