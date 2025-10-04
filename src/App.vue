@@ -11,6 +11,7 @@
           <router-link to="/button-demo" class="nav-link"
             >Button Demo</router-link
           >
+          <router-link to="/about" class="nav-link">About</router-link>
         </div>
         <div class="theme-controls">
           <select
@@ -36,6 +37,26 @@
         <div class="footer-logo">
           <img src="/vue-logo.svg" alt="Vue.js Logo" class="vue-logo-small" />
           <span>&copy; 2025 Modus 2.0 Vue App - Built with Vue.js</span>
+        </div>
+        <div class="footer-links">
+          <a
+            href="https://github.com/julianoczkowski/modus-vue-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="footer-link"
+          >
+            <img
+              src="/github-mark.svg"
+              alt="GitHub"
+              class="github-icon github-icon-light"
+            />
+            <img
+              src="/github-mark-white.svg"
+              alt="GitHub"
+              class="github-icon github-icon-dark"
+            />
+            GitHub
+          </a>
         </div>
       </div>
     </footer>
@@ -135,8 +156,10 @@ onMounted(() => {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .footer-logo {
@@ -149,6 +172,50 @@ onMounted(() => {
   width: 24px;
   height: 24px;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-link {
+  color: var(--modus-wc-color-base-content);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--modus-wc-color-base-content);
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+
+/* Theme-based icon switching */
+.github-icon-light {
+  display: block;
+}
+
+.github-icon-dark {
+  display: none;
+}
+
+/* Dark theme icon switching */
+[data-theme="modus-classic-dark"] .github-icon-light,
+[data-theme="modus-modern-dark"] .github-icon-light {
+  display: none;
+}
+
+[data-theme="modus-classic-dark"] .github-icon-dark,
+[data-theme="modus-modern-dark"] .github-icon-dark {
+  display: block;
 }
 
 /* Global styles */
@@ -164,5 +231,22 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
 }
 </style>
