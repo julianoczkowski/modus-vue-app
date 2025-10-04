@@ -4,7 +4,7 @@
     <header class="app-header">
       <nav class="nav-container">
         <div class="nav-brand">
-          <h1>Modus 2 Vue Demo</h1>
+          <h2>Modus 2.0 Vue App</h2>
         </div>
         <div class="nav-links">
           <router-link to="/" class="nav-link">Home</router-link>
@@ -32,7 +32,12 @@
     </main>
 
     <footer class="app-footer">
-      <p>&copy; 2025 Modus Vue Components Demo</p>
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="/vue-logo.svg" alt="Vue.js Logo" class="vue-logo-small" />
+          <span>&copy; 2025 Modus 2.0 Vue App - Built with Vue.js</span>
+        </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -123,6 +128,27 @@ onMounted(() => {
   text-align: center;
   padding: 1rem;
   color: var(--modus-wc-color-base-content);
+  border-top: 2px solid var(--modus-wc-color-base-200);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.vue-logo-small {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 /* Global styles */

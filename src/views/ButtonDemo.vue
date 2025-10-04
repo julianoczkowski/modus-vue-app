@@ -1,11 +1,13 @@
 <template>
   <div class="button-demo">
     <div class="demo-header">
-      <h1>Modus Button Component Demo</h1>
+      <h1>Modus Button Demo</h1>
       <p>
         Explore all the variants, colors, sizes, and features of the Modus
         Button component. This page demonstrates both direct web component usage
-        and Vue integration patterns.
+        and Vue integration patterns. If you can see this page, you have
+        successfully installed the boilerplate and are ready to build your
+        application.
       </p>
     </div>
 
@@ -212,10 +214,10 @@
         <div class="button-example">
           <h3>Full Width</h3>
           <div class="button-column">
-            <modus-wc-button color="primary" full-width
+            <modus-wc-button variant="filled" color="primary" full-width
               >Full Width Primary</modus-wc-button
             >
-            <modus-wc-button variant="outlined" color="secondary" full-width
+            <modus-wc-button variant="outlined" color="primary" full-width
               >Full Width Outlined</modus-wc-button
             >
           </div>
@@ -243,16 +245,11 @@
             <i class="modus-icons" style="margin-right: 8px">check</i>
             Submit
           </modus-wc-button>
-          <modus-wc-button
-            type="reset"
-            variant="outlined"
-            color="secondary"
-            @click="resetForm"
-          >
+          <modus-wc-button type="reset" variant="outlined" @click="resetForm">
             <i class="modus-icons" style="margin-right: 8px">refresh</i>
             Reset
           </modus-wc-button>
-          <modus-wc-button type="button" variant="borderless" color="tertiary">
+          <modus-wc-button type="button" variant="secondary">
             <i class="modus-icons" style="margin-right: 8px">cancel_circle</i>
             Cancel
           </modus-wc-button>

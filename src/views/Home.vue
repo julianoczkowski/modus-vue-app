@@ -1,36 +1,30 @@
 <template>
   <div class="home">
     <div class="hero-section">
-      <h1 class="hero-title">Welcome to Modus Vue Components</h1>
+      <div class="hero-logo">
+        <img src="/vue-logo.svg" alt="Vue.js Logo" class="vue-logo-large" />
+      </div>
+      <h1 class="hero-title">Welcome to Modus 2.0 Vue App</h1>
       <p class="hero-subtitle">
-        A comprehensive demonstration of Modus 2 Web Components integrated with
-        Vue 3
+        A boilerplate for building Vue 3 applications with Modus. If you can see
+        this page, example components, icons and theme switching you have
+        successfully installed the boilerplate.
       </p>
-
-      <!-- Demo alert using Modus component -->
-      <modus-wc-alert
-        variant="success"
-        alert-title="Setup Complete!"
-        dismissible
-      >
-        Your Modus Vue application is ready to use. Explore the components and
-        features below.
-      </modus-wc-alert>
     </div>
 
     <div class="features-grid">
       <div class="feature-card">
         <div class="feature-icon">
-          <i class="modus-icons">components</i>
+          <i class="modus-icons">coffee_cup</i>
         </div>
         <h3>Rich Component Library</h3>
         <p>
           Access to 40+ production-ready components from the Modus Design System
         </p>
         <router-link to="/button-demo" class="feature-link">
-          <modus-wc-button color="primary" variant="outlined">
+          <modus-wc-button color="primary">
             <i class="modus-icons" style="margin-right: 8px">launch</i>
-            Explore Components
+            Check Buttons
           </modus-wc-button>
         </router-link>
       </div>
@@ -41,11 +35,7 @@
         </div>
         <h3>Theme Support</h3>
         <p>Built-in light and dark themes with modern and classic variants</p>
-        <modus-wc-button
-          color="secondary"
-          variant="outlined"
-          @click="cycleTheme"
-        >
+        <modus-wc-button color="secondary" @click="cycleTheme">
           <i class="modus-icons" style="margin-right: 8px">brightness</i>
           Try Themes
         </modus-wc-button>
@@ -57,10 +47,6 @@
         </div>
         <h3>Accessibility First</h3>
         <p>WCAG 2.1 AA compliant components with proper ARIA support</p>
-        <modus-wc-button color="tertiary" variant="outlined">
-          <i class="modus-icons" style="margin-right: 8px">check_circle</i>
-          Learn More
-        </modus-wc-button>
       </div>
 
       <div class="feature-card">
@@ -69,40 +55,24 @@
         </div>
         <h3>TypeScript Ready</h3>
         <p>Full TypeScript support with comprehensive type definitions</p>
-        <modus-wc-button color="warning" variant="outlined">
-          <i class="modus-icons" style="margin-right: 8px">launch</i>
-          View Docs
-        </modus-wc-button>
       </div>
     </div>
 
-    <div class="quick-start">
-      <h2>Quick Start Example</h2>
-      <p>
-        Here's how easy it is to use Modus components in your Vue application:
-      </p>
-
-      <div class="code-example">
-        <pre><code>&lt;template&gt;
-  &lt;modus-wc-button color="primary" @click="handleClick"&gt;
-    &lt;i class="modus-icons"&gt;save_disk&lt;/i&gt;
-    Save Changes
-  &lt;/modus-wc-button&gt;
-&lt;/template&gt;
-
-&lt;script setup lang="ts"&gt;
-const handleClick = () =&gt; {
-  console.log('Button clicked!')
-}
-&lt;/script&gt;</code></pre>
+    <div class="video-section">
+      <div class="video-header">
+        <h2>Learn More About Vue.js</h2>
+        <p>Watch this video to discover more about Vue.js and its ecosystem</p>
       </div>
-
-      <div class="example-result">
-        <h3>Result:</h3>
-        <modus-wc-button color="primary" @click="handleExampleClick">
-          <i class="modus-icons" style="margin-right: 8px">save_disk</i>
-          Save Changes
-        </modus-wc-button>
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/aG7Eu7SkKZA?si=KDI-XcSlRNr70bS5"
+          title="Vue.js Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+          class="video-iframe"
+        ></iframe>
       </div>
     </div>
   </div>
@@ -123,11 +93,6 @@ const cycleTheme = () => {
   document.documentElement.setAttribute("data-theme", newTheme);
   localStorage.setItem("modus-theme", newTheme);
 };
-
-const handleExampleClick = () => {
-  console.log("Example button clicked!");
-  // You could show a toast notification here
-};
 </script>
 
 <style scoped>
@@ -139,6 +104,24 @@ const handleExampleClick = () => {
 .hero-section {
   text-align: center;
   margin-bottom: 3rem;
+}
+
+.hero-logo {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vue-logo-large {
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.vue-logo-large:hover {
+  transform: scale(1.05);
 }
 
 .hero-title {
@@ -258,6 +241,75 @@ const handleExampleClick = () => {
 
   .feature-card {
     padding: 1.5rem;
+  }
+}
+
+/* Video Section Styles */
+.video-section {
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+}
+
+.video-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.video-header h2 {
+  color: var(--modus-wc-color-base-content);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.video-header p {
+  color: var(--modus-wc-color-base-content);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--modus-wc-color-base-100);
+  border: 1px solid var(--modus-wc-color-base-200);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 16 / 9;
+}
+
+.video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+/* Responsive video styles */
+@media (max-width: 768px) {
+  .video-section {
+    margin-top: 3rem;
+  }
+
+  .video-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .video-header p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .video-container {
+    margin: 0 1rem;
+    max-width: calc(100% - 2rem);
   }
 }
 </style>
