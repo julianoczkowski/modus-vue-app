@@ -14,16 +14,29 @@
           <router-link to="/about" class="nav-link">About</router-link>
         </div>
         <div class="theme-controls">
-          <select
-            @change="changeTheme"
-            v-model="currentTheme"
-            class="theme-selector"
+          <modus-wc-dropdown-menu
+            ref="themeDropdown"
+            button-size="md"
+            button-variant="primary"
+            menu-placement="bottom-end"
+            @menuVisibilityChange="handleMenuVisibility"
+            class="theme-dropdown"
           >
-            <option value="modus-classic-light">Classic Light</option>
-            <option value="modus-classic-dark">Classic Dark</option>
-            <option value="modus-modern-light">Modern Light</option>
-            <option value="modus-modern-dark">Modern Dark</option>
-          </select>
+            <div slot="button" class="theme-button-content">
+              <span class="theme-label">{{ getCurrentThemeLabel() }}</span>
+              <i class="modus-icons theme-arrow">expand_more</i>
+            </div>
+            <div slot="menu">
+              <modus-wc-menu-item
+                v-for="option in themeOptions"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+                :selected="currentTheme === option.value"
+                @itemSelect="handleThemeSelect"
+              />
+            </div>
+          </modus-wc-dropdown-menu>
         </div>
       </nav>
     </header>
@@ -67,15 +80,43 @@
 import { ref, onMounted } from "vue";
 
 const currentTheme = ref("modus-classic-light");
+const themeDropdown = ref<HTMLElement | null>(null);
 
-const changeTheme = (event: Event) => {
-  const target = event.target as HTMLSelectElement;
-  const theme = target.value;
-  currentTheme.value = theme;
-  document.documentElement.setAttribute("data-theme", theme);
+// Theme options for the Modus dropdown component
+const themeOptions = [
+  { label: "Classic Light", value: "modus-classic-light" },
+  { label: "Classic Dark", value: "modus-classic-dark" },
+  { label: "Modern Light", value: "modus-modern-light" },
+  { label: "Modern Dark", value: "modus-modern-dark" },
+];
 
-  // Store theme preference
-  localStorage.setItem("modus-theme", theme);
+// Get the label for the current theme
+const getCurrentThemeLabel = () => {
+  const theme = themeOptions.find(
+    (option) => option.value === currentTheme.value
+  );
+  return theme ? theme.label : "Theme";
+};
+
+// Handle theme selection from dropdown menu
+const handleThemeSelect = (event: CustomEvent) => {
+  const selectedValue = event.detail.value;
+  if (selectedValue && selectedValue !== currentTheme.value) {
+    currentTheme.value = selectedValue;
+    document.documentElement.setAttribute("data-theme", selectedValue);
+    localStorage.setItem("modus-theme", selectedValue);
+
+    // Close the dropdown
+    if (themeDropdown.value) {
+      (themeDropdown.value as any).menuVisible = false;
+    }
+  }
+};
+
+// Handle dropdown menu visibility changes
+const handleMenuVisibility = (event: CustomEvent) => {
+  // Optional: Add any logic when menu opens/closes
+  console.log("Menu visibility:", event.detail.isVisible);
 };
 
 onMounted(() => {
@@ -129,12 +170,33 @@ onMounted(() => {
   color: var(--modus-wc-color-base-content);
 }
 
-.theme-selector {
-  padding: 0.5rem;
-  border: 1px solid var(--modus-wc-color-base-200);
-  border-radius: 4px;
-  background-color: var(--modus-wc-color-base-page);
-  color: var(--modus-wc-color-base-content);
+.theme-controls {
+  display: flex;
+  align-items: center;
+}
+
+.theme-dropdown {
+  min-width: 140px;
+}
+
+.theme-button-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 120px;
+}
+
+.theme-label {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.theme-arrow {
+  margin-left: 8px;
+  font-size: 18px;
+  flex-shrink: 0;
 }
 
 .main-content {
