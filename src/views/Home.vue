@@ -12,61 +12,46 @@
       </p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="modus-icons">coffee_cup</i>
+    <div class="features-section">
+      <div class="features-container">
+        <div class="feature-item">
+          <div class="feature-content">
+            <i class="modus-icons feature-icon-small">coffee_cup</i>
+            <div class="feature-text">
+              <h4>Rich Components</h4>
+              <p>40+ production-ready components</p>
+            </div>
+          </div>
+          <router-link to="/button-demo" class="feature-link">
+            <modus-wc-button color="primary"> Check Buttons </modus-wc-button>
+          </router-link>
         </div>
-        <h3>Rich Component Library</h3>
-        <p>
-          Access to 40+ production-ready components from the Modus Design System
-        </p>
-        <router-link to="/button-demo" class="feature-link">
-          <modus-wc-button color="primary">
-            <i class="modus-icons" style="margin-right: 8px">launch</i>
-            Check Buttons
+
+        <div class="feature-item">
+          <div class="feature-content">
+            <i class="modus-icons feature-icon-small">palette</i>
+            <div class="feature-text">
+              <h4>Theme Support</h4>
+              <p>Light & dark themes with variants</p>
+            </div>
+          </div>
+          <modus-wc-button color="secondary" size="sm" @click="cycleTheme">
+            <i class="modus-icons" style="margin-right: 6px">brightness</i>
+            Try Themes
           </modus-wc-button>
-        </router-link>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="modus-icons">palette</i>
         </div>
-        <h3>Theme Support</h3>
-        <p>Built-in light and dark themes with modern and classic variants</p>
-        <modus-wc-button color="secondary" @click="cycleTheme">
-          <i class="modus-icons" style="margin-right: 8px">brightness</i>
-          Try Themes
-        </modus-wc-button>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="modus-icons">accessibility</i>
-        </div>
-        <h3>Accessibility First</h3>
-        <p>WCAG 2.1 AA compliant components with proper ARIA support</p>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">
-          <i class="modus-icons">code</i>
-        </div>
-        <h3>TypeScript Ready</h3>
-        <p>Full TypeScript support with comprehensive type definitions</p>
       </div>
     </div>
 
     <div class="video-section">
       <div class="video-header">
-        <h2>Learn More About Vue.js</h2>
-        <p>Watch this video to discover more about Vue.js and its ecosystem</p>
+        <h2>About this Boilerplate</h2>
+        <p>Watch this video to discover more about this boilerplate</p>
       </div>
       <div class="video-container">
         <iframe
           src="https://www.youtube.com/embed/aG7Eu7SkKZA?si=KDI-XcSlRNr70bS5"
-          title="Vue.js Video"
+          title="Boilerplate Video"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerpolicy="strict-origin-when-cross-origin"
@@ -140,43 +125,65 @@ const cycleTheme = () => {
   margin-right: auto;
 }
 
-.features-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
+.features-section {
+  margin-bottom: 2rem;
 }
 
-.feature-card {
+.features-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.feature-item {
   background-color: var(--modus-wc-color-base-100);
   border: 1px solid var(--modus-wc-color-base-200);
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.feature-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-.feature-icon {
-  font-size: 3rem;
-  color: var(--modus-wc-color-base-content);
-  margin-bottom: 1rem;
+.feature-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
 }
 
-.feature-card h3 {
+.feature-icon-small {
+  font-size: 1.5rem;
   color: var(--modus-wc-color-base-content);
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+  flex-shrink: 0;
+  margin-top: 0.25rem;
 }
 
-.feature-card p {
+.feature-text {
+  flex: 1;
+}
+
+.feature-text h4 {
   color: var(--modus-wc-color-base-content);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.feature-text p {
+  color: var(--modus-wc-color-base-content);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.8;
 }
 
 .feature-link {
@@ -235,12 +242,29 @@ const cycleTheme = () => {
     font-size: 2rem;
   }
 
-  .features-grid {
+  .features-container {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
-  .feature-card {
-    padding: 1.5rem;
+  .feature-item {
+    padding: 1.25rem;
+  }
+
+  .feature-content {
+    gap: 0.75rem;
+  }
+
+  .feature-icon-small {
+    font-size: 1.25rem;
+  }
+
+  .feature-text h4 {
+    font-size: 1rem;
+  }
+
+  .feature-text p {
+    font-size: 0.85rem;
   }
 }
 
