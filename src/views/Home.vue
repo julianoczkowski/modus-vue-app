@@ -22,9 +22,11 @@
               <p>40+ production-ready components</p>
             </div>
           </div>
-          <router-link to="/button-demo" class="feature-link">
-            <modus-wc-button color="primary"> Check Buttons </modus-wc-button>
-          </router-link>
+          <div class="feature-button-container">
+            <router-link to="/button-demo" class="feature-link">
+              <modus-wc-button color="primary"> Check Buttons </modus-wc-button>
+            </router-link>
+          </div>
         </div>
 
         <div class="feature-item">
@@ -35,10 +37,12 @@
               <p>Light & dark themes with variants</p>
             </div>
           </div>
-          <modus-wc-button color="secondary" size="sm" @click="cycleTheme">
-            <i class="modus-icons" style="margin-right: 6px">brightness</i>
-            Try Themes
-          </modus-wc-button>
+          <div class="feature-button-container">
+            <modus-wc-button color="secondary" size="sm" @click="cycleTheme">
+              <i class="modus-icons" style="margin-right: 6px">brightness</i>
+              Try Themes
+            </modus-wc-button>
+          </div>
         </div>
       </div>
     </div>
@@ -188,6 +192,12 @@ const cycleTheme = () => {
 
 .feature-link {
   text-decoration: none;
+}
+
+.feature-button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
 }
 
 .quick-start {
