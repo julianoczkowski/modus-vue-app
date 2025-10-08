@@ -49,8 +49,10 @@
 
     <div class="video-section">
       <div class="video-header">
-        <h2>About this Boilerplate</h2>
-        <p>Watch this video to discover more about this boilerplate</p>
+        <h2>Cursor Setup (generic)</h2>
+        <p>
+          Watch this video to discover more how to setup Cursor for any project.
+        </p>
       </div>
       <div class="video-container">
         <iframe
