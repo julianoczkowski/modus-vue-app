@@ -1,5 +1,9 @@
 ![Modus Vue Boilerplate Hero](readme_assets/hero.png)
 
+[![CI](https://github.com/julianoczkowski/modus-next-app/actions/workflows/ci.yml/badge.svg)](https://github.com/julianoczkowski/modus-next-app/actions/workflows/ci.yml)
+[![node](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # Modus Vue Boilerplate
 
 A production-ready Vue 3 boilerplate/starter template with Modus 2 Web Components integration, featuring TypeScript support, comprehensive component examples, and modern development practices. Perfect for quickly bootstrapping new applications with the Modus Design System.
